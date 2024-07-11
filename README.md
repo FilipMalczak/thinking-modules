@@ -7,7 +7,7 @@ decorators that register stuff for CI, a bit like annotation scanning in Java.
 
 > Requires python 3.5+, because of `typing`. Besides that, there are no dependencies.
 
-> System-independent. Tested on CPython 3.7+ (to simplify CI), but its really trivial. 
+> System-independent. Tested on CPython 3.9-3.12 (to simplify CI), but its really trivial. 
 
 The whole API is best documented by docstrings:
 

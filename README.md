@@ -7,7 +7,7 @@ decorators that register stuff for CI, a bit like annotation scanning in Java.
 
 > Requires python 3.5+, because of `typing`. Besides that, there are no dependencies.
 
-> System-independent. Not tested on PyPy, but its really trivial, so I don't expect issues. 
+> System-independent. Tested on CPython 3.7+ (to simplify CI), but its really trivial. 
 
 The whole API is best documented by docstrings:
 
@@ -39,4 +39,4 @@ def import_package_recursively(root_package: str) -> None:
     (...)
 ```
 
-Reading [the test suite](./test/test_recursive_import.py) is gonna be useful too, in case of uncertainty.
+Reading [the test suite](./test/test_recursive_import_from_root.py) is gonna be useful too, in case of uncertainty.

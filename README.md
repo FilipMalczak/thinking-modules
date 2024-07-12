@@ -1,6 +1,7 @@
 # recursive_import
 
-![CI](https://github.com/FilipMalczak/recursive_import/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/FilipMalczak/recursive_import/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipMalczak/recursive-import/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/recursive-import.svg)](https://badge.fury.io/py/recursive-import)
 
 Trivial library that will import the whole module tree.
 

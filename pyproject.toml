@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "recursive-import"
-version = "0.1.1"
+version = "1.0.0"
 description = "Trivial library that will import the whole module tree"
 readme = "README.md"
 authors = [{ name = "Filip Malczak", email = "filip.malczak@gmail.com" }]

@@ -3,11 +3,11 @@ requires      = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "recursive_import"
+name = "recursive-import"
 version = "0.0.1"
 description = "Trivial library that will import the whole module tree"
 readme = "README.md"
-authors = [{ name = "Filip Malczak", email = "filip.malczak(at)gmail.com" }]
+authors = [{ name = "Filip Malczak", email = "filip.malczak@gmail.com" }]
 license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -16,9 +16,11 @@ classifiers = [
 ]
 keywords = ["import"]
 dependencies = [
-
 ]
 requires-python = ">=3.5"
 
 [project.urls]
 Homepage = "https://github.com/FilipMalczak/recursive_import"
+
+[tool.setuptools]
+packages = ["recursive_import"]

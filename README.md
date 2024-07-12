@@ -1,5 +1,7 @@
 # recursive_import
 
+![CI](https://github.com/FilipMalczak/recursive_import/actions/workflows/ci.yml/badge.svg)
+
 Trivial library that will import the whole module tree.
 
 Main use case for this library is importing everything in given package. Simplest exaple are

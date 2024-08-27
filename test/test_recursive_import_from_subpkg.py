@@ -1,12 +1,14 @@
 from unittest import TestCase, main
 
 import test.accumulator
-from recursive_import import import_package_recursively
+from thinking_modules.importing import import_package_recursively
+from thinking_modules.model import ModuleName
+
 
 class Test(TestCase):
 
     def test_importing_from_subpackage(self):
-        import_package_recursively("fixture2.sub")
+        result = import_package_recursively("fixture2.sub")
         self.assertEqual(
             [
                 "fixture2", # parent packages will get imported by default, not as result of this function
@@ -14,6 +16,16 @@ class Test(TestCase):
                 'fixture2.sub.z'
             ],
             test.accumulator.accumulator
+        )
+        self.assertEqual(
+            [
+                ModuleName.resolve(x)
+                for x in [
+                    'fixture2.sub',
+                    'fixture2.sub.z'
+                ]
+            ],
+            result
         )
 
 

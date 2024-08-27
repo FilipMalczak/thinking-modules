@@ -3,9 +3,9 @@ requires      = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "recursive-import"
-version = "1.0.0"
-description = "Trivial library that will import the whole module tree"
+name = "thinking-modules"
+version = "0.0.1"
+description = "Module-related python utilities - recursive package import, modeling of names and modules, etc"
 readme = "README.md"
 authors = [{ name = "Filip Malczak", email = "filip.malczak@gmail.com" }]
 license = { file = "LICENSE" }
@@ -17,10 +17,10 @@ classifiers = [
 keywords = ["import"]
 dependencies = [
 ]
-requires-python = ">=3.5"
+requires-python = ">=3.12"
 
 [project.urls]
-Homepage = "https://github.com/FilipMalczak/recursive_import"
+Homepage = "https://github.com/FilipMalczak/thinking-modules"
 
 [tool.setuptools]
-packages = ["recursive_import"]
+packages = ["thinking_modules"]

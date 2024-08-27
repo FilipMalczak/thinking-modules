@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.9" # lowest supported version
+          python-version: "3.12"
 
       - name: Build release distributions
         run: |
@@ -44,7 +44,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/recursive-import
+      url: https://pypi.org/p/thinking-modules
 
     steps:
       - name: Retrieve release distributions

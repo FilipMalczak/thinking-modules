@@ -1,11 +1,13 @@
 from unittest import TestCase, main
 
 import test.accumulator
-from recursive_import import import_package_recursively
+from thinking_modules.importing import import_package_recursively
+from thinking_modules.model import ModuleName
+
 
 class Test(TestCase):
     def test_importing_from_root(self):
-        import_package_recursively("fixture")
+        result = import_package_recursively("fixture")
         self.assertEqual(
             [
                 'fixture',
@@ -15,6 +17,19 @@ class Test(TestCase):
                 'fixture.sub.z'
             ],
             test.accumulator.accumulator
+        )
+        self.assertEqual(
+            [
+                ModuleName.resolve(x)
+                for x in [
+                    'fixture',
+                    'fixture.x',
+                    'fixture.y',
+                    'fixture.sub',
+                    'fixture.sub.z'
+                ]
+            ],
+            result
         )
 
 

@@ -1,7 +1,9 @@
-# recursive_import
+# thinking-modules
 
-[![CI](https://github.com/FilipMalczak/recursive_import/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipMalczak/recursive-import/actions/workflows/ci.yml)
-[![PyPI version](https://badge.fury.io/py/recursive-import.svg)](https://badge.fury.io/py/recursive-import)
+[![CI](https://github.com/FilipMalczak/thinking-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipMalczak/thinking-modules/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/thinking-modules.svg)](https://badge.fury.io/py/thinking-modules)
+
+> Part of [thinking](https://github.com/search?q=owner%3AFilipMalczak+thinking&type=repositories) family.
 
 Module-related python utilities - recursive package import, modeling of names and modules, etc
 

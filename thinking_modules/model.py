@@ -10,6 +10,8 @@ from lazy import lazy
 
 from thinking_modules.immutable import Immutable
 
+#fixme some methods are marked as "roughly tested"; they are tested, but not very deeply
+# cost of testing these would be way too high for now
 
 class ModuleKind(Enum):
     MODULE = auto()
@@ -77,6 +79,16 @@ class Module(Immutable):
             return self.name
         return None
 
+    #fixme roughly tested
+    @lazy
+    def canonical_name(self) -> 'ModuleName':
+        return ModuleName.of(self.module_object)
+
+    #fixme roughly tested
+    @lazy
+    def is_main(self) -> bool:
+        return self.canonical_name.qualified == "__main__"
+
 
 class ModuleName(Immutable):
     parts: list[str]
@@ -117,14 +129,14 @@ class ModuleName(Immutable):
         return ModuleName(self.parts + [name])
 
     @lazy
-    def python_module(self) -> Module:
+    def module_descriptor(self) -> Module:
         return Module(self)
 
     def import_(self) -> Module:
         """
         Imperative variant of self.python_module. Makes some code easier to read. In the end it's a non-property alias.
         """
-        return self.python_module
+        return self.module_descriptor
 
     @classmethod
     def resolve(cls, something: ModuleNamePointer) -> Self:
@@ -158,6 +170,14 @@ class ModuleName(Immutable):
         return ModuleName(parts)
 
     of = resolve
+
+    @lazy
+    def is_canonical(self) -> bool:
+        return self.canonical == self
+
+    @lazy
+    def canonical(self) -> Self:
+        return self.module_descriptor.canonical_name
 
     def __len__(self):
         return len(self.parts)

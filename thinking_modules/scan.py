@@ -9,7 +9,7 @@ log = getLogger(__name__)
 
 def scan(pkg_name: ModuleNamePointer, *, include_mains: bool=False) -> Iterable[ModuleName]:
     pkg_name = ModuleName.resolve(pkg_name)
-    assert pkg_name.python_module.is_package
+    assert pkg_name.module_descriptor.is_package
     def scan_pkg(name: ModuleName, pkg_dir: str):
         log.debug(f"Found package {name.qualified}")
         yield name
@@ -37,4 +37,4 @@ def scan(pkg_name: ModuleNamePointer, *, include_mains: bool=False) -> Iterable[
                     log.debug(f"Ignoring non-python-source file {path}")
         for sub in subpkgs:
             yield from scan_pkg(*sub)
-    yield from scan_pkg(pkg_name, dirname(pkg_name.python_module.file_path))
+    yield from scan_pkg(pkg_name, dirname(pkg_name.module_descriptor.file_path))

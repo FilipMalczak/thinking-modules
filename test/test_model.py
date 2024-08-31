@@ -37,7 +37,7 @@ class ModuleNameTests(TestCase):
 class ModuleTests(TestCase):
     def test_importing(self):
         name = ModuleName.resolve("test.dontscan.some_module")
-        mod = name.python_module
+        mod = name.module_descriptor
         self.assertFalse(mod.is_imported)
         m = mod.module_object
         self.assertIsNotNone(m)
@@ -45,7 +45,7 @@ class ModuleTests(TestCase):
 
     def test_describing_packaged_module(self):
         name = ModuleName.resolve("test.subpackage.a_module")
-        mod = name.python_module
+        mod = name.module_descriptor
         from test.subpackage import a_module
         self.assertEqual(mod.name, name)
         self.assertEqual(mod.module_object, a_module)
@@ -57,7 +57,7 @@ class ModuleTests(TestCase):
 
     def test_describing_subpackage(self):
         name = ModuleName.resolve("test.subpackage")
-        mod = name.python_module
+        mod = name.module_descriptor
         from test import subpackage
         self.assertEqual(mod.name, name)
         self.assertEqual(mod.module_object, subpackage)
@@ -69,7 +69,7 @@ class ModuleTests(TestCase):
 
     def test_describing_root_package(self):
         name = ModuleName.resolve("test")
-        mod = name.python_module
+        mod = name.module_descriptor
         import test
         self.assertEqual(mod.name, name)
         self.assertEqual(mod.module_object, test)
@@ -82,7 +82,7 @@ class ModuleTests(TestCase):
 
     def test_describing_package_main(self):
         name = ModuleName.resolve("test.subpackage.__main__")
-        mod = name.python_module
+        mod = name.module_descriptor
         from test.subpackage import __main__
         self.assertEqual(mod.name, name)
         self.assertEqual(mod.module_object, __main__)
@@ -94,7 +94,7 @@ class ModuleTests(TestCase):
 
     def test_describing_root_module(self):
         name = ModuleName.resolve("module_fixture")
-        mod = name.python_module
+        mod = name.module_descriptor
         import module_fixture
         self.assertEqual(mod.name, name)
         self.assertEqual(mod.module_object, module_fixture)
@@ -103,5 +103,12 @@ class ModuleTests(TestCase):
         self.assertFalse(mod.is_package)
         self.assertFalse(mod.is_shell)
         self.assertIsNone(mod.root_package_name)
+
+    def test_canonical(self):
+        import os.path
+        name = ModuleName.of("os.path")
+        #os.path is known to be sys.modules-fuckery based on platform (windows/unix), thus its a good testing target
+        self.assertEqual(name.canonical, ModuleName.of(os.path.__name__))
+        self.assertFalse(name.is_canonical)
 
     #shell is not testable from script... sorta by definition

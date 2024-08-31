@@ -21,5 +21,4 @@ jobs:
       - name: Run unittests
         # Run each file separately, to avoid unittest doing the imports
         run: |
-          python -m unittest ./test/test_recursive_import_from_root.py
-          python -m unittest ./test/test_recursive_import_from_subpkg.py
+          python -m unittest

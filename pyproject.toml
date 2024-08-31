@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "thinking-modules"
-version = "0.0.1"
-description = "Module-related python utilities - recursive package import, modeling of names and modules, etc"
+version = "0.0.2"
+description = "Module-related python utilities - recursive package scan, modeling of names and modules, etc"
 readme = "README.md"
 authors = [{ name = "Filip Malczak", email = "filip.malczak@gmail.com" }]
 license = { file = "LICENSE" }
@@ -13,8 +13,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed"
 ]
-keywords = ["import"]
+keywords = ["thinking", "import", "scan", "modules", "meta"]
 dependencies = [
 ]
 requires-python = ">=3.12"

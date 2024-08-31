@@ -1,0 +1,1 @@
+# this module exists for the sake of testing; see test.test_model.ModuleTests.test_describing_root_module

@@ -2,6 +2,7 @@ from dataclasses import field
 import random
 from unittest import TestCase
 
+from test.random_util import random_other_than
 from thinking_modules.immutable import Immutable
 
 from lazy import lazy
@@ -37,9 +38,7 @@ class ImmutableTests(TestCase):
         self.assertEqual(x.a, 7)
         self.assertEqual(x.b, random_val)
 
-        random_val = random.randint(0, 0xDEADBEEF)
-        while random_val == 10:
-            random_val = random.randint(0, 0xDEADBEEF)
+        random_val = random_other_than(10)
         x = NotThatSimple(9, 10)
         self.assertEqual(x.a, 9)
         self.assertEqual(x.b, 10)
@@ -48,8 +47,7 @@ class ImmutableTests(TestCase):
         self.assertEqual(x.a, 9)
         self.assertEqual(x.b, 10)
 
-        while random_val == 15:
-            random_val = random.randint(0, 0xDEADBEEF)
+        random_val = random_other_than(15)
         x = NotThatSimple(b=15, a=10)
         self.assertEqual(x.a, 10)
         self.assertEqual(x.b, 15)

@@ -24,7 +24,7 @@ jobs:
           [ -f ./test-requirements.txt ] && pip install -r ./test-requirements.txt || echo "No test-requirements.txt found"
       - name: Run unittests
         run: |
-          coverage -m unittest
+          coverage run -m unittest
 
       - name: Prepare coverage reports
         run: |

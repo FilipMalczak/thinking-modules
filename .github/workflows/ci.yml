@@ -61,18 +61,18 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
-      - name: Update Coverage Badge
-        # GitHub actions: default branch variable
-        # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: we-cli/coverage-badge-action@main
-
-      #todo add upload test report
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          env_vars: OS,PYTHON
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+          verbose: true
 
       - name: Publish test report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
           name: Unit tests (${{matrix.os}}, ${{ matrix.python-version }}, ${{ github.event_name }})
-          path: ./xmlunit/TEST-*.xml    # Path to test results
-          reporter: java-junit        # Format of test results
+          path: ./xmlunit/TEST-*.xml
+          reporter: java-junit

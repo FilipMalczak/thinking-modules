@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/FilipMalczak/thinking-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipMalczak/thinking-modules/actions/workflows/ci.yml)
 [![PyPI version](https://badge.fury.io/py/thinking-modules.svg)](https://badge.fury.io/py/thinking-modules)
-[![cov](https://FilipMalczak.github.io/thinking-modules/badges/coverage.svg)](https://github.com/FilipMalczak/thinking-modules/actions)
+[![codecov](https://codecov.io/github/FilipMalczak/thinking-modules/graph/badge.svg?token=KFQ1DJQMWF)](https://codecov.io/github/FilipMalczak/thinking-modules)
 
 
 > Part of [thinking](https://github.com/search?q=owner%3AFilipMalczak+thinking&type=repositories) family.

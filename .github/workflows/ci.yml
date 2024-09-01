@@ -4,8 +4,8 @@ on: [push, pull_request]
 
 permissions:
   contents: read
-  pull-requests: write
   actions: read
+  pull-requests: write
   checks: write
 
 jobs:
@@ -61,18 +61,19 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
-      - name: Update Coverage Badge
-        # GitHub actions: default branch variable
-        # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
-        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
-        uses: we-cli/coverage-badge-action@main
-
-      #todo add upload test report
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          env_vars: OS,PYTHON
+          flags: ${{matrix.os}}, ${{matrix.os}}-${{ matrix.python-version }}, ${{ matrix.python-version }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
 
       - name: Publish test report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
           name: Unit tests (${{matrix.os}}, ${{ matrix.python-version }}, ${{ github.event_name }})
-          path: ./xmlunit/TEST-*.xml    # Path to test results
-          reporter: java-junit        # Format of test results
+          path: ./xmlunit/TEST-*.xml
+          reporter: java-junit

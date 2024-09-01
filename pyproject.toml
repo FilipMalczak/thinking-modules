@@ -18,6 +18,7 @@ classifiers = [
 ]
 keywords = ["thinking", "import", "scan", "modules", "meta"]
 dependencies = [
+    "lazy==1.6"
 ]
 requires-python = ">=3.12"
 

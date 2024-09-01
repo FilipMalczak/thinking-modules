@@ -4,8 +4,8 @@ on: [push, pull_request]
 
 permissions:
   contents: read
-  pull-requests: write
   actions: read
+  pull-requests: write
   checks: write
 
 jobs:
@@ -67,7 +67,7 @@ jobs:
           files: ./coverage.xml
           env_vars: OS,PYTHON
           flags: ${{matrix.os}}, ${{matrix.os}}-${{ matrix.python-version }}, ${{ matrix.python-version }}
-          token: ${{ secrets.CODECOV_TOKEN }} # required
+          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
 
       - name: Publish test report

@@ -1,2 +1,2 @@
 coverage
-xmlrunner
+unittest-xml-reporting

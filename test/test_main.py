@@ -6,8 +6,8 @@ from thinking_modules.model import ModuleName
 
 class MainModuleTest(TestCase):
     def test_main(self):
-        #this will only pass if executed as 'python -m unittest'
-        self.assertEqual(main_name, ModuleName.of("unittest.__main__"))
+        #this will only pass if executed as 'python/coverage -m xmlrunner'
+        self.assertEqual(main_name, ModuleName.of("xmlrunner.__main__"))
         self.assertTrue(main_module.is_main)
         self.assertEqual(main_name.canonical, ModuleName.of("__main__"))
         self.assertFalse(main_module.name.is_canonical)

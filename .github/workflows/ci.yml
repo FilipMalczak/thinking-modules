@@ -1,6 +1,12 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+  actions: read
+  checks: write
 
 jobs:
   build:
@@ -23,7 +29,50 @@ jobs:
           [ -f ./requirements.txt ] && pip install -r ./requirements.txt || echo "No requirements.txt found"
           [ -f ./test-requirements.txt ] && pip install -r ./test-requirements.txt || echo "No test-requirements.txt found"
       - name: Run unittests
-        # Run each file separately, to avoid unittest doing the imports
         run: |
-          
-          python -m unittest
+          coverage run -m xmlrunner -o ./xmlunit
+
+      - name: Prepare coverage reports
+        run: |
+          coverage report -m
+          coverage html
+          coverage xml
+
+      - name: Upload HTML coverage report
+        uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          name: htmlcov
+          path: htmlcov/
+
+      - name: Publish coverage reports
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          filename: ./**/coverage.xml
+          badge: true
+          format: markdown
+          output: both
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+
+      - name: Update Coverage Badge
+        # GitHub actions: default branch variable
+        # https://stackoverflow.com/questions/64781462/github-actions-default-branch-variable
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: we-cli/coverage-badge-action@main
+
+      #todo add upload test report
+
+      - name: Publish test report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Unit tests (${{matrix.os}}, ${{ matrix.python-version }}, ${{ github.event_name }})
+          path: ./xmlunit/TEST-*.xml    # Path to test results
+          reporter: java-junit        # Format of test results

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "thinking-modules"
-version = "0.0.2"
+version = "0.0.3"
 description = "Module-related python utilities - recursive package scan, modeling of names and modules, etc"
 readme = "README.md"
 authors = [{ name = "Filip Malczak", email = "filip.malczak@gmail.com" }]

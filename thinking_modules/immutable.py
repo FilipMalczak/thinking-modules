@@ -1,5 +1,4 @@
-from dataclasses import field, dataclass
-from typing import dataclass_transform
+from dataclasses import dataclass
 
 class ImmutableMeta(type):
     def __new__(cls, name, bases, body, *args, **kwargs):

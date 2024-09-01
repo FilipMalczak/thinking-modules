@@ -1,10 +1,9 @@
 import sys
-from dataclasses import field
 from enum import Enum, auto
 from importlib import import_module
 from os.path import basename
 from types import ModuleType
-from typing import NamedTuple, Optional, Self
+from typing import Optional, Self
 
 from lazy import lazy
 
@@ -118,6 +117,16 @@ class ModuleName(Immutable):
             return None
         return ModuleName(self.parts[:-1])
 
+    #fixme tested indirectly, via definitions
+    def is_ancestor(self, other: Self) -> bool:
+        if len(other) < len(self):
+            return False
+        return self.parts == other.parts[:len(self.parts)]
+
+    #fixme tested indirectly, via definitions
+    def is_descendant(self, other: Self) -> bool:
+        return other.is_ancestor(self)
+
     def submodule(self, name: str) -> Self:
         """
         Assume that this name refers to a package and return a ModuleName pointing to module or package with given name
@@ -171,10 +180,12 @@ class ModuleName(Immutable):
 
     of = resolve
 
+    #fixme untested
     @lazy
     def is_canonical(self) -> bool:
         return self.canonical == self
 
+    #fixme untested
     @lazy
     def canonical(self) -> Self:
         return self.module_descriptor.canonical_name

@@ -73,6 +73,6 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: unittest
+          name: unittest (on ${matrix.os})
           path: ./xmlunit/TEST-*.xml    # Path to test results
           reporter: java-junit        # Format of test results

@@ -2,6 +2,9 @@ name: CI
 
 on: [push, pull_request]
 
+permissions:
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}

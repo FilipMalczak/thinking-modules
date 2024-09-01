@@ -73,6 +73,6 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: unittest (on ${{matrix.os}} / ${{ github.event_name }})
+          name: Unit tests (${{matrix.os}}, ${{ matrix.python-version }}, ${{ github.event_name }})
           path: ./xmlunit/TEST-*.xml    # Path to test results
           reporter: java-junit        # Format of test results

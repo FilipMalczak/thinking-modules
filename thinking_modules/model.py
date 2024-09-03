@@ -141,11 +141,8 @@ class ModuleName(Immutable):
     def module_descriptor(self) -> Module:
         return Module(self)
 
-    def import_(self) -> Module:
-        """
-        Imperative variant of self.python_module. Makes some code easier to read. In the end it's a non-property alias.
-        """
-        return self.module_descriptor
+    def import_(self) -> ModuleType:
+        return self.module_descriptor.module_object
 
     @classmethod
     def resolve(cls, something: ModuleNamePointer) -> Self:
@@ -171,6 +168,7 @@ class ModuleName(Immutable):
             name = something.__module__
         if parts is None:
             parts = name.split(".")
+        #fixme check if this is left in docs, remove it
         #if declared in __main__ module - keep the name
         #if declared in pkg.__main__ - skip __main__, keep the pkg
         #fixme this will screw up import from pkg.__main__ - get rid of this beature? or actually reenable it?

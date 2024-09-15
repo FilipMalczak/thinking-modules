@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/github/FilipMalczak/thinking-modules/graph/badge.svg?token=KFQ1DJQMWF)](https://codecov.io/github/FilipMalczak/thinking-modules)
 
 
-> Part of [thinking](https://github.com/search?q=owner%3AFilipMalczak+thinking&type=repositories) family.
+> Part of [thinking](https://github.com/FilipMalczak/thinking-rationale) family.
 
 Module-related python utilities - recursive package scan and import, modeling of names and modules, etc
 
